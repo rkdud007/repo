@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="stylesheet" href="../static/base_totd.css"/>
+    {% block css %}
+
+    {% endblock css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>totd_base</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="wrapper">
+            <div class="header">
+                <!-- X쳐서 뒤로 가는거  -->
+                <span class="title">Task of Today</span>
+            </div>
+            
+            <div class="middle">
+                <div class="title">
+                    <input type="text" name="title" placeholder="New Task">
+                </div>
+
+                <div class="date">
+                    <label for="due">Date</label>
+                    <input type="datetime-local" id="due" name="due">
+                </div>
+            </div>
+
+            <div class="todo">
+                <textarea name="content" placeholder="할 일을 적어보세요." rows="30" cols="30"></textarea>
+            </div>
+
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+    <div class="color">
+        <label for="color_tag">Color</label>
+        <div class="color_palette">
+            <div class="theme_1" style="background-color: #FDFBC7;"></div>
+            <div class="theme_2" style="background-color: #ECC5C7;"></div>
+            <div class="theme_3" style="background-color: #E29EAF;"></div>
+            <div class="theme_4" style="background-color: #A38FAB;"></div>
+            <div class="theme_5" style="background-color: #918DAB;"></div>
+            <div class="theme_6" style="background-color: #79849F;"></div>
+        </div>
+
+        <div class="colorBoard" style="width: 30px; height: 30px; display: none;"></div>
+        <!-- <div></div> -->
+        <button class="change">선택</button>
+    </div>
+
+<script type="text/javascript">
+const colorbutton = document.querySelector(".change");
+const colorPalette = document.querySelector('.color_palette')
+
+let selectedColor= ''
+
+colorPalette.addEventListener('click',(event)=>{
+    selectedColor = event.target.style.backgroundColor
+})
+
+colorbutton.addEventListener('click',()=>{
+    localStorage.setItem("color",selectedColor)
+})
+// 여기서부터 다른 페이지
+const colorBoard = document.querySelector('.colorBoard')
+const savedColor = localStorage.getItem('color')
+colorBoard.style.backgroundColor = savedColor
+</script>
+
+</body>
+</html>

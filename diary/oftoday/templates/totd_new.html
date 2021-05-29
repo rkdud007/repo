@@ -1,13 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container">
-    <br>
-    <form method="POST">
-    {% csrf_token %}
-    <div class="form form-table">
-        {{ form }}
-        <button type="submit" class="btn btn-info right"> Submit </button>
-    </div>
-    </form>
-</div>
-{% endblock %}
+{% extends 'totd_base.html' %}
+{% block css%} {% load static %}
+<link rel="stylesheet" href="../static/base_totd.css"/>
+{% endblock css%}

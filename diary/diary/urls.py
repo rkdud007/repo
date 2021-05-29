@@ -38,27 +38,27 @@ urlpatterns = [
 
     # path('event/new/', views.event, name="new"),
 
-    path('<int:year>/<int:month>/<int:day>/new/fotd',views.new_fotd, name="new_fotd"),
-    path('<int:year>/<int:month>/<int:day>/new/ootd',views.new_ootd, name="new_ootd"),
-    path('<int:year>/<int:month>/<int:day>/new/motd',views.new_motd, name="new_motd"),
-    path('<int:year>/<int:month>/<int:day>/new/totd',views.new_totd, name="new_totd"),
+    path('new/fotd',views.new_fotd, name="new_fotd"),
+    path('new/ootd',views.new_ootd, name="new_ootd"),
+    path('new/motd',views.new_motd, name="new_motd"),
+    path('new/totd',views.new_totd, name="new_totd"),
 
     path('home/main_detail/<int:year>/<int:month>/<int:day>',views.main_detail, name="main_detail"),
 
-    path('<int:year>/<int:month>/<int:day>/edit/fotd/<int:fotd_pk>',views.edit_fotd, name="edit_fotd"),
-    path('<int:year>/<int:month>/<int:day>/edit/ootd/<int:ootd_pk>',views.edit_ootd, name="edit_ootd"),
-    path('<int:year>/<int:month>/<int:day>/edit/motd/<int:motd_pk>',views.edit_motd, name="edit_motd"),
-    path('<int:year>/<int:month>/<int:day>/edit/totd/<int:totd_pk>',views.edit_totd, name="edit_totd"),
+    path('edit/fotd/<int:fotd_pk>',views.edit_fotd, name="edit_fotd"),
+    path('edit/ootd/<int:ootd_pk>',views.edit_ootd, name="edit_ootd"),
+    path('edit/motd/<int:motd_pk>',views.edit_motd, name="edit_motd"),
+    path('edit/totd/<int:totd_pk>',views.edit_totd, name="edit_totd"),
 
-    path('<int:year>/<int:month>/<int:day>/delete/fotd/<int:fotd_pk>',views.delete_fotd, name="delete_fotd"),
-    path('<int:year>/<int:month>/<int:day>/delete/ootd/<int:ootd_pk>',views.delete_ootd, name="delete_ootd"),
-    path('<int:year>/<int:month>/<int:day>/delete/motd/<int:motd_pk>',views.delete_motd, name="delete_motd"),
-    path('<int:year>/<int:month>/<int:day>/delete/totd/<int:totd_pk>',views.delete_totd, name="delete_totd"),
+    path('delete/fotd/<int:fotd_pk>',views.delete_fotd, name="delete_fotd"),
+    path('delete/ootd/<int:ootd_pk>',views.delete_ootd, name="delete_ootd"),
+    path('delete/motd/<int:motd_pk>',views.delete_motd, name="delete_motd"),
+    path('delete/totd/<int:totd_pk>',views.delete_totd, name="delete_totd"),
 
-    path('<int:year>/<int:month>/<int:day>/detail/fotd/<int:fotd_pk>',views.detail_fotd, name="detail_fotd"),
-    path('<int:year>/<int:month>/<int:day>/detail/ootd/<int:ootd_pk>',views.detail_ootd, name="detail_ootd"),
-    path('<int:year>/<int:month>/<int:day>/detail/motd/<int:motd_pk>',views.detail_motd, name="detail_motd"),
-    path('<int:year>/<int:month>/<int:day>/detail/totd/<int:totd_pk>',views.detail_totd, name="detail_totd"),
+    path('detail/fotd/<int:fotd_pk>',views.detail_fotd, name="detail_fotd"),
+    path('detail/ootd/<int:ootd_pk>',views.detail_ootd, name="detail_ootd"),
+    path('detail/motd/<int:motd_pk>',views.detail_motd, name="detail_motd"),
+    path('detail/totd/<int:totd_pk>',views.detail_totd, name="detail_totd"),
 
     path('like/fotd', views.like_fotd ,name="like_fotd"),
     path('like/ootd', views.like_ootd ,name="like_ootd"),

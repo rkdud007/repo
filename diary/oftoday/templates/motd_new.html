@@ -1,13 +1,42 @@
-{% extends 'base.html' %}
+{% extends "base_nav.html" %}
+
+{% block css %} {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'signup_login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'motd_new.css' %}">
+{% endblock %}
 {% block content %}
-<div class="container">
-    <br>
-    <form method="POST">
-    {% csrf_token %}
-    <div class="form form-table">
-        {{ form }}
-        <button type="submit" class="btn btn-info right"> Submit </button>
-    </div>
+
+
+<div class="signup ">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="all">
+            <div class="title">
+                <div class="container">
+                    <p style="font-weight:100"> Mood of Today </p>
+                </div>
+            </div>
+            <div class="whole">
+                <div class="buttons-a">
+                    <button type="button" class="button"><img src="../static/ch1.png"></button>
+                    <button type="button" class="button"><img src="../static/ch2.png"></button>
+                    <button type="button" class="button"><img src="../static/ch3.png"></button>
+                </div>
+                <div class="buttons-b">
+                    <button type="button" class="button"><img src="../static/ch4.png"></button>
+                    <button type="button" class="button"><img src="../static/ch5.png"></button>
+                    <button type="button" class="button"><img src="../static/ch6.png"></button>
+                </div>
+            </div>
+                <br>
+                <br>
+            <div class="content">
+                <textarea id="content" name="content" rows="8" cols="45" placeholder="오늘의 기분은?"
+                    style="border: none; background-color:#F5F5F5; text-align: center;"></textarea>
+            </div>
+        </div>
     </form>
 </div>
+
 {% endblock %}
