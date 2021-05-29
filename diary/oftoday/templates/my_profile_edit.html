@@ -6,22 +6,36 @@
 {% endblock %}
 {% block content %}
 
-<div id="sidebar">
+<div class="edit">
     <form action='' method="POST">
         {% csrf_token %}
+        <br>
         <div class="form-cont">
             <label for="nickname">닉네임</label>
-            <input class="form-control" type="text" id="nickname" name="nickname" value="{{profile.nickname}}">
+            <br>
+            <br>
+            <input style="border: none; background-color:#F5F5F5; text-align: center;" class="form-control" type="text"
+                id="nickname" name="nickname" value="{{profile.nickname}}">
         </div>
-        <div class="form-cont">
+        <br>
+        <br>
+        <div class="form-cont2">
             <label for="introduction">자기소개</label>
-            <textarea class="form-control" name="introduction" id="introduction" cols="30" rows="10" >{{profile.introduction}}</textarea>
+            <br> <br>
+            <textarea style="resize: none;border: none; background-color:#F5F5F5; text-align: center;"
+                class="form-control" name="introduction" id="introduction" cols="30"
+                rows="10">{{profile.introduction}}</textarea>
         </div>
-        <div class="form-cont">
-            <label for="birthday">생일</label>
-            <input class="form-control" type="date" id="birthday" name="birthday" value="{{profile.birthday|date:"Y-m-d"}}">
+        <br>
+        <div class="form-cont3">
+            <label for="birthday">🎂</label>
+            <input style=" text-align: center; border: none; background-color:#F5F5F5; " class="form-control"
+                type="date" id="birthday" name="birthday" value="{{profile.birthday|date:'Y-m-d'}}">
         </div>
-        <button class="btn btn-outline-secondary" type="submit">수정하기</button>
+        <br>
+        <button
+            style="  padding: 8px; border: none; background-color: #858492; color: white; font-size: 5pt; width: 80px; border-radius: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: lighter;"
+            class="btn btn-outline-secondary" type="submit">Save ✓</button>
     </form>
-</div>  
+</div>
 {% endblock %}

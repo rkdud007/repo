@@ -5,7 +5,7 @@ from django.contrib import auth
 import datetime
 from django.contrib.auth.decorators import login_required
 import calendar
-from .calendar import Calendar_F,Calendar_M,Calendar_O,Calendar_T
+from .calendar import Calendar_F,Calendar_M,Calendar_O,Calendar_T,Calendar_nonlogin
 from django.utils.safestring import mark_safe
 from .forms import EventForm
 from django.views.decorators.csrf import csrf_exempt
@@ -15,13 +15,25 @@ import json
 
 # Create your views here.
 
+def home(request):
+    today = get_date(request.GET.get('month'))
+
+    prev_month_var = prev_month(today)
+    next_month_var = next_month(today)
+    cal = Calendar_nonlogin(today.year, today.month)
+    html_cal = cal.formatmonth(withyear=True)
+    result_cal = mark_safe(html_cal)
+
+    context = {'calendar' : result_cal, 'prev_month' : prev_month_var, 'next_month' : next_month_var}
+
+    return render(request, 'home.html', context)
+
 def home_ootd(request):
     today = get_date(request.GET.get('month'))
 
     prev_month_var = prev_month(today)
     next_month_var = next_month(today)
-
-    cal = Calendar_O(today.year, today.month)
+    cal = Calendar_O(today.year, today.month, request.user)
     html_cal = cal.formatmonth(withyear=True)
     result_cal = mark_safe(html_cal)
 
@@ -35,7 +47,7 @@ def home_fotd(request):
     prev_month_var = prev_month(today)
     next_month_var = next_month(today)
 
-    cal = Calendar_F(today.year, today.month)
+    cal = Calendar_F(today.year, today.month, request.user)
     html_cal = cal.formatmonth(withyear=True)
     result_cal = mark_safe(html_cal)
 
@@ -43,13 +55,14 @@ def home_fotd(request):
 
     return render(request, 'fotd_home.html', context)
 
+@login_required(login_url="/registration/login")
 def home_totd(request):
     today = get_date(request.GET.get('month'))
 
     prev_month_var = prev_month(today)
     next_month_var = next_month(today)
+    cal = Calendar_T(today.year, today.month, request.user)
 
-    cal = Calendar_T(today.year, today.month)
     html_cal = cal.formatmonth(withyear=True)
     result_cal = mark_safe(html_cal)
 
@@ -64,7 +77,7 @@ def home_motd(request):
     prev_month_var = prev_month(today)
     next_month_var = next_month(today)
 
-    cal = Calendar_M(today.year, today.month)
+    cal = Calendar_M(today.year, today.month, request.user)
     html_cal = cal.formatmonth(withyear=True)
     result_cal = mark_safe(html_cal)
 
@@ -94,12 +107,12 @@ def next_month(day):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
-
+@login_required(login_url="/registration/login")
 def main_detail(request,year,month,day):
     fotds = Fotd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
     ootds = Ootd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
-    motds = Motd.objects.filter(day__year=year, day__month = month, day__day=day)
-    totds = Totd.objects.filter(day__year=year, day__month = month, day__day=day)
+    motds = Motd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
+    totds = Totd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
     return render(request, 'main_detail.html' , {'fotds':fotds,'ootds':ootds,'motds':motds,'totds':totds,'year':year,'month':month,'day':day})
 
 
@@ -109,6 +122,7 @@ def new_totd(request):
         new_totd = Totd.objects.create(
             title=request.POST["title"],
             content=request.POST["content"],
+            author=request.user,
         )
         return redirect("detail_totd", totd_pk=new_totd.pk)
     return render(request, "totd_base.html")
@@ -120,6 +134,7 @@ def edit_totd(request, totd_pk):
         Totd.objects.filter(pk=totd_pk).update(
             title=request.POST['title'],
             content=request.POST['content'],
+            author=request.user,
         )
         return redirect('detail_totd', totd_pk)
 
@@ -147,6 +162,7 @@ def new_motd(request):
             moods=request.POST["moods"],
             content=request.POST["content"],
             day=request.POST["day"],
+            author=request.user,
         )
         return redirect("detail_motd", new_motd.pk)
     return render(request, "motd_new.html")
@@ -160,6 +176,7 @@ def edit_motd(request, motd_pk):
             moods=request.POST["moods"],
             content=request.POST["content"],
             day=request.POST["day"],
+            author=request.user,
         )
         return redirect('detail_motd', motd_pk)
 

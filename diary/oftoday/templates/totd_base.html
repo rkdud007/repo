@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <link rel="stylesheet" href="../static/base_totd.css"/>
-    {% block css %}
+{% extends "base_nav.html" %}
 
-    {% endblock css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>totd_base</title>
-</head>
+{% block css %} {% load static %}
 
-<body>
+<link rel="stylesheet" type="text/css" href="{% static 'signup_login.css' %}">
+<link rel="stylesheet" href="../static/base_totd.css"/>
+{% endblock %}
+{% block content %}
+
+
+<div class="signup ">
     <form action="" method="post">
         {% csrf_token %}
         <div class="wrapper">
@@ -57,24 +52,24 @@
         <button class="change">선택</button>
     </div>
 
-<script type="text/javascript">
-const colorbutton = document.querySelector(".change");
-const colorPalette = document.querySelector('.color_palette')
+    <script type="text/javascript">
+    const colorbutton = document.querySelector(".change");
+    const colorPalette = document.querySelector('.color_palette')
 
-let selectedColor= ''
+    let selectedColor= ''
 
-colorPalette.addEventListener('click',(event)=>{
-    selectedColor = event.target.style.backgroundColor
-})
+    colorPalette.addEventListener('click',(event)=>{
+        selectedColor = event.target.style.backgroundColor
+    })
 
-colorbutton.addEventListener('click',()=>{
-    localStorage.setItem("color",selectedColor)
-})
-// 여기서부터 다른 페이지
-const colorBoard = document.querySelector('.colorBoard')
-const savedColor = localStorage.getItem('color')
-colorBoard.style.backgroundColor = savedColor
-</script>
+    colorbutton.addEventListener('click',()=>{
+        localStorage.setItem("color",selectedColor)
+    })
+    // 여기서부터 다른 페이지
+    const colorBoard = document.querySelector('.colorBoard')
+    const savedColor = localStorage.getItem('color')
+    colorBoard.style.backgroundColor = savedColor
+    </script>
+</div>
 
-</body>
-</html>
+{% endblock %}

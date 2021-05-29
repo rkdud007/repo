@@ -11,7 +11,7 @@ class Fotd(models.Model):
     content = models.TextField(max_length=300,default="")
     day = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
     def __str__(self):
         return self.title
@@ -22,7 +22,7 @@ class Ootd(models.Model):
     content = models.TextField(max_length=300,default="")
     day = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
     def __str__(self):
         return self.title
@@ -49,6 +49,7 @@ class Totd(models.Model):
     color = ColorField(choices=COLOR_CHOICES)
     day = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
     def __str__(self):
         return self.title
@@ -67,6 +68,7 @@ class Motd(models.Model):
     moods = models.CharField(choices=OPTIONS,max_length=50)
     content = models.TextField(max_length=1000,default="")
     day = models.DateField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
     def __str__(self):
         return self.title
