@@ -7,6 +7,80 @@
     <title>Document</title>
 </head>
 <body>
-    }}
+    <div class="top_container">
+        <div class="date_box">
+            <div class="date">
+                {{  }}1
+            </div>
+    
+            <div class="day">
+                
+            </div>
+    
+        </div>
+    
+        <div class="mood">
+            <ul class="sub-container">
+                {% for motd in motds %}
+                <li>
+                    <a href="{% url 'detail_motd' motd.pk %}">{{motd.title}}</a>
+                    <div>{{motd.}}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="task">
+        <ul class="sub-container">
+            {% for totd in totds %}
+            <li>
+                <a href="{% url 'detail_totd' totd.pk %}">{{totd.title}}</a>
+                <div>{{totd.day}}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="box">
+        <div class="photo">
+            <ul class="sub-container">
+                {% for totd in totds %}
+                <li>
+                    <a href="{% url 'detail_totd' totd.pk %}">{{totd.title}}</a>
+                    <div>{{totd.day}}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="photo">
+            {{ ootds }}
+        </div>
+    </div>
+    
+    <div class="bottom_container">
+        <div class="go">
+            <a class="t" href="{% url 'totd_new' %}"></a>
+            <a class="m" href="{% url 'motd_new' %}"></a>
+            <a class="f" href="{% url 'fotd_new' %}"></a>
+            <a class="o" href="{% url 'ootd_new' %}"></a>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+    function getInputDayLabel() {
+        var week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri','Sat');
+        var today = new Date(`${year}-${month}-${day}`).getDay();
+        var todayLabel = week[today];
+
+        return todayLabel;
+    }
+
+    console.log(getInputDayLabel())
+
+</script>    
 </body>
 </html>

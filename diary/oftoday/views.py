@@ -8,7 +8,6 @@ import calendar
 from .calendar import Calendar_F,Calendar_M,Calendar_O,Calendar_T
 from django.utils.safestring import mark_safe
 from .forms import EventForm
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import json
@@ -101,7 +100,7 @@ def main_detail(request,year,month,day):
     ootds = Ootd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
     motds = Motd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
     totds = Totd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
-    return render(request, 'main_detail.html' , {'fotds':fotds,'ootds':ootds,'motds':motds,'totds':totds})
+    return render(request, 'main_detail.html' , {'fotds':fotds,'ootds':ootds,'motds':motds,'totds':totds,'year':year,'month':month,'day':day})
 
 
 @login_required(login_url="/registration/login")
@@ -295,7 +294,8 @@ def signup(request):
             username=request.POST['username'],
             password=request.POST['password']
         )
-        auth.login(request, new_user)  # 회원가입 정상적으로 진행한 뒤에, 자동으로 로그인
+        auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
+        #auth.login(request, new_user)  # 회원가입 정상적으로 진행한 뒤에, 자동으로 로그인
 
         return redirect('profile_new')
 

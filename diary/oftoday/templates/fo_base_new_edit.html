@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'fo_base_new_edit.css' %}">
+    {% block css %}
+    
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fo_new</title>
+</head>
+
+<body>
+    <form action="" method="post">
+    {% csrf_token %}
+        <div class="all">
+            <div class="title">
+                {% block title %}
+
+                {% endblock title %}
+            </div>
+
+            <div class="wrapper">
+                <!-- <div class="image">
+                    <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
+                        
+                        <input type="file" name="file" id="file" style="display:none" />
+                    </form>
+                    <div class="button" onclick="onclick=document.all.file.click()">사진추가</div>
+                    <div class="button" onclick="del">사진제거</div>
+
+                    <script>
+
+                    </script>
+                </div> -->
+
+                <div class="menu">
+                    <textarea placeholder="menu" rows="30" cols="30" ></textarea>
+                </div>
+
+                <div class="content">
+                    <textarea placeholder="내용을 입력해볼까요?"></textarea>
+                </div>
+                <div class="range">
+                    <label for="all">전체공개</label>
+                    <input name="r" type="radio" id="all">
+                </div>
+                <div class="tag">
+                    <h3>Add #</h3> <input class="profile-input" type="text">
+                    <input class="profile-input-button" type="button" value="+">
+                </div>
+            </div>
+        </div>
+        <div class="bar">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</body>
+
+</html>

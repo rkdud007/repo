@@ -41,8 +41,12 @@ class Tag(models.Model):
 
 class Totd(models.Model):
     COLOR_CHOICES = [
-        ("#FFFFFF", "white"),
-        ("#000000", "black")
+        ("#FDFBC7", "1"),
+        ("#ECC5C7", "2"),
+        ("#E29EAF", "3"),
+        ("#A38FAB", "4"),
+        ("#918DAB", "5"),
+        ("#79849F", "6"),
     ]
     title = models.CharField(max_length=100,default="")
     content = models.TextField(max_length=300,default="")
@@ -75,7 +79,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile_user")
     nickname = models.CharField(max_length=40, blank=True)
     introduction = models.TextField(blank=True,default="")
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to='images/',blank=True)
     birthday = models.DateField(auto_now=False, null=True, blank=True)
 
     def __str__(self):

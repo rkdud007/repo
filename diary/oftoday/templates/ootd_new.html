@@ -1,13 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'fo_base_new_edit.html' %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'fo_new_edit.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <br>
-    <form method="POST">
-    {% csrf_token %}
-    <div class="form form-table">
-        {{ form }}
-        <button type="submit" class="btn btn-info right"> Submit </button>
-    </div>
-    </form>
+<h2>Outfit Of Today</h2>
+{% endblock %}
+
+{% block content %}
+<div class="top">
+    <input type="text" placeholder="Outfit">
 </div>
 {% endblock %}
