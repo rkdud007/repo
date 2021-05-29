@@ -6,7 +6,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Fotd(models.Model):
-    picture = models.ImageField(blank = True)
+    picture = models.ImageField(upload_to='images/',blank = True)
     title = models.CharField(max_length=100,default="")
     content = models.TextField(max_length=300,default="")
     share = models.BooleanField(default=False)
@@ -19,7 +19,7 @@ class Fotd(models.Model):
         return self.title
 
 class Ootd(models.Model):
-    picture = models.ImageField(blank = True)
+    picture = models.ImageField(upload_to='images/', blank = True)
     title = models.CharField(max_length=100,default="")
     content = models.TextField(max_length=300,default="")
     share = models.BooleanField(default=False)
