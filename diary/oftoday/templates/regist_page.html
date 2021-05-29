@@ -1,0 +1,24 @@
+{% extends "base_nav.html" %}
+
+{% block css %} {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'regist_page.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div id="sidebar">
+        {% if user.is_authenticated %}
+            <div>마이프로필</div>
+            <div>{{user.profile_user.nickname}}님 안녕하세요</div>
+            <div>
+                <div>{{user.profile_user.introduction}}</div>
+                <div>{{user.profile_user.birthday}}</div>
+            </div>
+            <a class="regist_item" href="{% url 'profile_edit' user.pk %}"> 프로필 수정하기 </a>
+            <a class="regist_item" href="{% url 'logout' %}"> logout </a>
+        {% else %}
+            <a class="regist_item" href="{% url 'login' %}"> login </a>
+            <a class="regist_item" href="{% url 'signup' %}">회원가입</a>
+        {% endif %}
+    </div>
+{% endblock %}

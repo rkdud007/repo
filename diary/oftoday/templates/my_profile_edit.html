@@ -1,0 +1,27 @@
+{% extends "base_nav.html" %}
+
+{% block css %} {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'regist_page.css' %}">
+{% endblock %}
+{% block content %}
+
+<div id="sidebar">
+    <form action='' method="POST">
+        {% csrf_token %}
+        <div class="form-cont">
+            <label for="nickname">닉네임</label>
+            <input class="form-control" type="text" id="nickname" name="nickname" value="{{profile.nickname}}">
+        </div>
+        <div class="form-cont">
+            <label for="introduction">자기소개</label>
+            <textarea class="form-control" name="introduction" id="introduction" cols="30" rows="10" >{{profile.introduction}}</textarea>
+        </div>
+        <div class="form-cont">
+            <label for="birthday">생일</label>
+            <input class="form-control" type="date" id="birthday" name="birthday" value="{{profile.birthday|date:"Y-m-d"}}">
+        </div>
+        <button class="btn btn-outline-secondary" type="submit">수정하기</button>
+    </form>
+</div>  
+{% endblock %}

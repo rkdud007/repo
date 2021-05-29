@@ -2,11 +2,11 @@
 
 {% block css %} {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'signup_login.css' %}">
 {% endblock %}
-{% block box %}
+{% block content %}
 
-<div class="login">
+<div class="signup">
     <h1> 로그인 </h1>
     {% if error %}
     <h3 style="color: red;">{{ error }}</h3>

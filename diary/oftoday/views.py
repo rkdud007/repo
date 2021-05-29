@@ -98,8 +98,8 @@ def next_month(day):
 def main_detail(request,year,month,day):
     fotds = Fotd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
     ootds = Ootd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
-    motds = Motd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
-    totds = Totd.objects.filter(day__year=year, day__month = month, day__day=day, author = request.user)
+    motds = Motd.objects.filter(day__year=year, day__month = month, day__day=day)
+    totds = Totd.objects.filter(day__year=year, day__month = month, day__day=day)
     return render(request, 'main_detail.html' , {'fotds':fotds,'ootds':ootds,'motds':motds,'totds':totds,'year':year,'month':month,'day':day})
 
 
@@ -185,12 +185,14 @@ def detail_motd(request, motd_pk):
 
     return render(request, 'motd_detail.html', {'motd': motd})
 
+def regist_page(request):
+    return render(request, "regist_page.html")
+
 #FOTD
 @login_required(login_url="/registration/login")
 def new_fotd(request):
     if request.method == "POST":
         new_fotd = Fotd.objects.create(
-            picture=request.POST["picture"],
             title=request.POST["title"],
             content=request.POST["content"],
             share=request.POST["share"],
@@ -207,7 +209,6 @@ def edit_fotd(request, fotd_pk):
 
     if request.method == 'POST':
         Fotd.objects.filter(pk=fotd_pk).update(
-            picture=request.POST["picture"],
             title=request.POST["title"],
             content=request.POST["content"],
             share=request.POST["share"],
@@ -316,7 +317,7 @@ def login(request):
             })
 
         auth.login(request, found_user)
-        return redirect("home")
+        return redirect("home_totd")
 
     return render(request, "registration/login.html")
 
@@ -324,27 +325,20 @@ def login(request):
 def logout(request):
     auth.logout(request)
 
-    return redirect('home')
+    return redirect('home_totd')
 
-# myProfile
-
-def my_profile(request, user_pk):
-    Cuser = User.objects.get(pk=user_pk)
-    profile = Profile.objects.get(user=Cuser)
-    return render(request, "my_profile.html", {"profile": profile})
 
 def profile_edit(request, user_pk):
-    profile = Profile.objects.get(pk=user_pk)
+    profile = Profile.objects.get(user=request.user)
 
     if request.method == "POST":
-        Profile.objects.filter(pk=user_pk).update(
+        Profile.objects.filter(user=request.user).update(
             user=request.user,
             nickname=request.POST["nickname"],
             introduction=request.POST["introduction"],
-            image=request.POST["image"],
             birthday=request.POST["birthday"],
         )
-        return redirect("my_profile", user_pk)
+        return redirect("regist_page")
     return render(request, "my_profile_edit.html", {"profile": profile})
 
 def profile_new(request):
@@ -353,10 +347,9 @@ def profile_new(request):
             user=request.user,
             nickname=request.POST["nickname"],
             introduction=request.POST["introduction"],
-            image=request.POST["image"],
             birthday=request.POST["birthday"],
         )
-        return redirect("home")
+        return redirect("home_totd")
     return render(request, "my_profile_new.html")
 
 #authorProfile
