@@ -17,7 +17,7 @@ class Calendar_F(HTMLCalendar):
 			d += f'<li> {fotd.title} </li>'
 
 		if day != 0:
-			return f"<td><span class='date'><a href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
+			return f"<td><span class='date'><a style='color:#858492;' href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
 		return '<td></td>'
 
 	# '주'를 tr 태그로 변환
@@ -53,7 +53,7 @@ class Calendar_O(HTMLCalendar):
 			d += f'<li> {ootd.title} </li>'
 
 		if day != 0:
-			return f"<td><span class='date'><a href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
+			return f"<td><span class='date'><a style='color:#858492;' href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
 		return '<td></td>'
 
 	# '주'를 tr 태그로 변환
@@ -89,7 +89,7 @@ class Calendar_T(HTMLCalendar):
 			d += f'<li> {totd.title} </li>'
 
 		if day != 0:
-			return f"<td><span class='date'><a href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
+			return f"<td><span class='date'><a style='color:#858492;' href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
 		return '<td></td>'
 
 	# '주'를 tr 태그로 변환
@@ -118,7 +118,7 @@ class Calendar_nonlogin(HTMLCalendar):
 	def formatday(self,year,month, day):
 
 		if day != 0:
-			return f"<td><span class='date'><a href='main_detail/{year}/{month}/{day}'>{day}</a></span></td>"
+			return f"<td><span class='date'><a style='color:#858492;' href='main_detail/{year}/{month}/{day}'>{day}</a></span></td>"
 		return '<td></td>'
 
 	# '주'를 tr 태그로 변환
@@ -153,7 +153,7 @@ class Calendar_M(HTMLCalendar):
 			d += f'<li> {motd.title} </li>'
 
 		if day != 0:
-			return f"<td><span class='date'><a href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
+			return f"<td><span class='date'><a style='color:#858492;' href='main_detail/{year}/{month}/{day}'>{day}</a></span><ul class='event_line'> {d} </ul></td>"
 		return '<td></td>'
 
 	# '주'를 tr 태그로 변환

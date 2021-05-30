@@ -10,18 +10,19 @@
     {% if user.is_authenticated %}
     <br>
     <br>
+
+    <div style="color:#a38fabc2; font-weight: 400; font-size: 17px;"> ⓟ ⓡ ⓞ ⓕ ⓘ ⓛ ⓔ </div>
     <br>
-    <div style="color:#a38fabc2; font-weight: 400; font-size: 13px;"> ⓟ ⓡ ⓞ ⓕ ⓘ ⓛ ⓔ </div>
     <br>
-    <div> 𝙝𝙚𝙡𝙡𝙤,<br>
+    <div style="font-size: 15px;"> 𝙝𝙚𝙡𝙡𝙤,<br>
         {{user.profile_user.nickname}}</div>
     <br>
     <div>
-        <div class=" me">
+        <div class="me" style="font-size: 15px;">
             𝙞𝙣𝙛𝙤. <br> {{user.profile_user.introduction}}
         </div>
         <br>
-        <div> 🎂 <br> {{user.profile_user.birthday}}</div>
+        <div style="font-size: 15px;"> 🎂 <br> {{user.profile_user.birthday}}</div>
     </div>
     <br>
     <br>

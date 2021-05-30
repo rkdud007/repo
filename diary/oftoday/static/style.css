@@ -148,8 +148,8 @@ html{
   }
   
   a {
-      transition: color .2s;
       text-decoration: none;
+      color:#858492;
   }
   
   span {
