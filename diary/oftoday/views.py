@@ -122,6 +122,7 @@ def new_totd(request):
         new_totd = Totd.objects.create(
             title=request.POST["title"],
             content=request.POST["content"],
+            day = request.POST['day'],
             author=request.user,
         )
         return redirect("detail_totd", totd_pk=new_totd.pk)
@@ -134,6 +135,7 @@ def edit_totd(request, totd_pk):
         Totd.objects.filter(pk=totd_pk).update(
             title=request.POST['title'],
             content=request.POST['content'],
+            day = request.POST['day'],
             author=request.user,
         )
         return redirect('detail_totd', totd_pk)
@@ -159,7 +161,6 @@ def new_motd(request):
     if request.method == "POST":
         new_motd = Motd.objects.create(
             title=request.POST["title"],
-            moods=request.POST["moods"],
             content=request.POST["content"],
             day=request.POST["day"],
             author=request.user,
@@ -173,7 +174,6 @@ def edit_motd(request, motd_pk):
     if request.method == 'POST':
         Motd.objects.filter(pk=motd_pk).update(
             title=request.POST["title"],
-            moods=request.POST["moods"],
             content=request.POST["content"],
             day=request.POST["day"],
             author=request.user,
@@ -206,6 +206,7 @@ def new_fotd(request):
         new_fotd = Fotd.objects.create(
             title=request.POST["title"],
             content=request.POST["content"],
+            day = request.POST['day'],
             author=request.user,
     
         )
@@ -219,11 +220,8 @@ def edit_fotd(request, fotd_pk):
         Fotd.objects.filter(pk=fotd_pk).update(
             title=request.POST["title"],
             content=request.POST["content"],
-            share=request.POST["share"],
-            tags=request.POST["tags"],
             day=request.POST["day"],
-            time=request.POST["time"],
-            author=request.POST["author"],
+            author=request.user,
         )
         return redirect('detail_fotd', fotd_pk)
 
@@ -239,7 +237,7 @@ def detail_fotd(request, fotd_pk):
     fotd = Fotd.objects.get(pk=fotd_pk)
 
     if request.method == 'POST':
-        return redirect('fotd_detail', fotd_pk)
+        return redirect('detail_fotd', fotd_pk)
 
     return render(request, 'fotd_detail.html', {'fotd': fotd})
 
@@ -251,6 +249,7 @@ def new_ootd(request):
             title=request.POST["title"],
             content=request.POST["content"],
             author=request.user,
+            day = request.POST['day'],
         )
         return redirect("detail_ootd", new_ootd.pk)
     return render(request, "ootd_new.html")
@@ -260,16 +259,12 @@ def edit_ootd(request, ootd_pk):
 
     if request.method == 'POST':
         Ootd.objects.filter(pk=ootd_pk).update(
-            picture=request.POST["picture"],
             title=request.POST["title"],
             content=request.POST["content"],
-            share=request.POST["share"],
-            tags=request.POST["tags"],
             day=request.POST["day"],
-            time=request.POST["time"],
-            author=request.POST["author"],
+            author=request.user,
         )
-        return redirect('ootd_detail', ootd_pk)
+        return redirect('detail_ootd', ootd_pk)
 
     return render(request, 'ootd_edit.html', {'ootd': ootd})
 
@@ -283,7 +278,7 @@ def detail_ootd(request, ootd_pk):
     ootd = Ootd.objects.get(pk=ootd_pk)
 
     if request.method == 'POST':
-        return redirect('ootd_detail', ootd_pk)
+        return redirect('detail_ootd', ootd_pk)
 
     return render(request, 'ootd_detail.html', {'ootd': ootd})
 

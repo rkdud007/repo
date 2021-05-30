@@ -19,17 +19,17 @@
             
             <div class="middle">
                 <div class="title">
-                    <input type="text" name="title" placeholder="New Task">
+                    <input type="text" name="title" value="{{totd.title}}" placeholder="New Task">
                 </div>
 
                 <div class="date">
-                    <label for="due">Date</label>
-                    <input type="datetime-local" id="due" name="due">
+                    <label for="day">Date</label>
+                    <input type="date" id="due" name="day" value="{{totd.day|date:"Y-m-d"}}">
                 </div>
             </div>
 
             <div class="todo">
-                <textarea name="content" placeholder="할 일을 적어보세요." rows="30" cols="30"></textarea>
+                <textarea name="content" placeholder="할 일을 적어보세요." rows="30" cols="30">{{totd.content}}</textarea>
             </div>
 
             <button type="submit">Save</button>
