@@ -84,10 +84,10 @@
 .buttone {
     background-image: url(../static/ch5.png);
     border-radius: 50%;
-    background-size: contain;
+    background-size: cover;
     border: none;
-    width: 95px;
-    height: 90px;
+    width: 89px;
+    height: 89px;
 }
 
 .buttonf {
